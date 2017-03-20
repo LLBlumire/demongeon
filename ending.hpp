@@ -1,7 +1,7 @@
 #ifndef INCL_ENDING_HPP
 #define INCL_ENDING_HPP
 
-namespace {
+namespace demon {
     namespace Ending {
         enum Enum {
             Win,
