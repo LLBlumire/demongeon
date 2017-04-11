@@ -1,0 +1,10 @@
+name = "Result"
+gentypes = [ "T", "E" ]
+
+[[variant]]
+name = "Ok"
+fields = [ "T" ]
+
+[[variant]]
+name = "Err"
+fields = [ "E" ]

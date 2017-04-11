@@ -69,11 +69,13 @@ namespace demon {
 
             // If a valid direction was found.
             if (found) {
-                optional::Option<bool*>* edge_opt = this->edge(random_joined_coord, dir);
-                bool* edge;
-                if (edge_opt->unwrap_some(&edge)) {
-                    *edge = true;
-                    joined.insert(target);
+                option::Option<bool*>* edge_opt = this->edge(random_joined_coord, dir);
+                {
+                    bool** edge;
+                    if (edge_opt->let_some(edge)) {
+                        **edge = true;
+                        joined.insert(target);
+                    }
                 }
                 delete edge_opt;
             }
@@ -82,11 +84,11 @@ namespace demon {
 
     }
 
-    optional::Option<Room*>* Maze::room(Coord c) {
+    option::Option<Room*>* Maze::room(Coord c) {
         if (c.x < 5 || c.y < 5) {
-            return new optional::Some<Room*>(&this->rooms[c.x][c.y]);
+            return new option::Some<Room*>(&this->rooms[c.x][c.y]);
         } else {
-            return new optional::None<Room*>();
+            return new option::None<Room*>();
         }
     }
 
@@ -94,15 +96,15 @@ namespace demon {
         return &this->rooms[c.x][c.y];
     }
 
-    optional::Option<bool*>* Maze::edge(Coord c, Direction::Enum dir) {
+    option::Option<bool*>* Maze::edge(Coord c, Direction::Enum dir) {
         std::size_t i;
         std::size_t j;
         std::size_t k;
         room_to_edge(c.x, c.y, dir, i, j, k);
         if (i < 2 && j < 4 && k < 5) {
-            return new optional::Some<bool*>(&this->edges[i][j][k]);
+            return new option::Some<bool*>(&this->edges[i][j][k]);
         } else {
-            return new optional::None<bool*>();
+            return new option::None<bool*>();
         }
     }
 
@@ -119,27 +121,31 @@ namespace demon {
             if (line % 2 == 0) {
                 for (std::size_t x = 0; x < 5; ++x) {
                     *os << "+";
-                    optional::Option<bool*>* edge_opt = this->edge(Coord(x, line / 2),
+                    option::Option<bool*>* edge_opt = this->edge(Coord(x, line / 2),
                                                         Direction::East);
-                    bool* edge;
-                    if (edge_opt->unwrap_some(&edge) && *edge) {
-                        *os << "-";
-                    } else {
-                        *os << " ";
+                    {
+                        bool** edge;
+                        if (edge_opt->let_some(edge) && **edge) {
+                            *os << "-";
+                        } else {
+                            *os << " ";
+                        }
                     }
                     delete edge_opt;
                 }
             } else {
                 for (std::size_t x = 0; x < 5; ++x) {
-                    optional::Option<bool*>* edge_opt = this->edge(Coord(x, (line - 1) / 2),
+                    option::Option<bool*>* edge_opt = this->edge(Coord(x, (line - 1) / 2),
                                                         Direction::South);
-                    bool* edge;
-                    if (edge_opt->unwrap_some(&edge) && *edge) {
-                        *os << "|";
-                    } else {
+                    {
+                        bool** edge;
+                        if (edge_opt->let_some(edge) && **edge) {
+                            *os << "|";
+                        } else {
+                            *os << " ";
+                        }
                         *os << " ";
                     }
-                    *os << " ";
                 }
             }
             return true;

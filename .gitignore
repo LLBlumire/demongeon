@@ -1,5 +1,1 @@
-*.bat
-*.o
-demongeon*
-*.orig
-*.swp
+build

@@ -7,7 +7,7 @@
 
 #include "coord.hpp"
 #include "direction.hpp"
-#include "optional.hpp"
+#include "option.hpp"
 #include "room.hpp"
 
 namespace demon {
@@ -16,9 +16,9 @@ namespace demon {
             Room rooms[5][5];
             bool edges[2][4][5];
             Maze();
-            optional::Option<Room*>* room(Coord c);
+            option::Option<Room*>* room(Coord c);
             Room* room_unchecked(Coord c);
-            optional::Option<bool*>* edge(Coord c, Direction::Enum dir);
+            option::Option<bool*>* edge(Coord c, Direction::Enum dir);
             bool* edge_unchecked(Coord c, Direction::Enum dir);
             bool oline(std::ostream* os, int line);
     };

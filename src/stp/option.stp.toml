@@ -1,0 +1,10 @@
+name = "Option"
+gentypes = [ "T" ]
+
+[[variant]]
+name = "Some"
+fields = [ "T" ]
+
+[[variant]]
+name = "None"
+fields = [ ]

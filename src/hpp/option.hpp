@@ -1,15 +1,15 @@
-#ifndef INCL_OPTIONAL_HPP
-#define INCL_OPTIONAL_HPP
-
-namespace optional {
+#ifndef INCL_OPTION_HPP
+#define INCL_OPTION_HPP
+namespace option {
     template <typename T>
     class Option {
         public:
             virtual bool is_some() const = 0;
             virtual bool is_none() const = 0;
-            virtual bool unwrap_some(T* t) const = 0;
+            virtual bool let_some(T*& _0) = 0;
+            virtual bool let_none() = 0;
+            virtual ~Option() {}
     };
-
     template <typename T>
     class Some : public Option<T> {
         public:
@@ -19,17 +19,19 @@ namespace optional {
             bool is_none() const {
                 return false;
             }
-            bool unwrap_some(T* t) const {
-                *t = this->inner;
+            bool let_some(T*& _0) {
+                _0 = &this->_0;
                 return true;
             }
-            Some(T inner) {
-                this->inner = inner;
+            bool let_none() {
+                return false;
+            }
+            Some(T _0) {
+                this->_0 = _0;
             }
         protected:
-            T inner;
+            T _0;
     };
-
     template <typename T>
     class None : public Option<T> {
         public:
@@ -39,11 +41,15 @@ namespace optional {
             bool is_none() const {
                 return true;
             }
-            bool unwrap_some(T* t) const {
+            bool let_some(T*& _0) {
                 return false;
             }
-            None() {}
+            bool let_none() {
+                return true;
+            }
+            None() {
+            }
+        protected:
     };
 }
-
 #endif

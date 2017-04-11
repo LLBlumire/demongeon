@@ -15,17 +15,17 @@ int main() {
     GameState game = GameState();
 
     result::Result<Ending::Enum, Error::Enum>* game_result = game.run();
-    if (game_result->is_ok()) {
-        Ending::Enum ending;
-        game_result->unwrap_ok(&ending);
-
-        switch (ending) {
-            case Ending::Win:
-                std::cout << "You Win!";
-                break;
-            case Ending::Died:
-                std::cout << "Try Again Next Time!";
-                break;
+    {
+        Ending::Enum* ending;
+        if (game_result->let_ok(ending)) {
+            switch (*ending) {
+                case Ending::Win:
+                    std::cout << "You Win!";
+                    break;
+                case Ending::Died:
+                    std::cout << "Try Again Next Time!";
+                    break;
+            }
         }
     }
     delete game_result;
