@@ -1,28 +1,30 @@
 # Directory Structure
-BUILD = build # Output Directory
-OBJ = $(BUILD)/obj # Object Directory
-BIN = $(BUILD)/bin # Binary Directory
-SOURCE = src # Input Directory
-CPP = $(SOURCE)/cpp # C++ Files
-HPP = $(SOURCE)/hpp # C++ Header Files
-STP = $(SOURCE)/stp # C++ Sum Type Generator Files
+BUILD = build
+OBJ = $(BUILD)/obj
+BIN = $(BUILD)/bin
+SOURCE = src
+CPP = $(SOURCE)/cpp
+HPP = $(SOURCE)/hpp
+STP = $(SOURCE)/stp
+
+# Output Name
+BINOUT = $(BIN)/demongeon
 
 # Try clang++, fallback to g++
-CPP = clang++
+CL = clang++
 ifeq (, $(shell command -v clang++ 2>/dev/null))
-CPP := g++
+CL := g++
 endif
 
 # Build And Link Commands
-CC = $(CPP) -Wall -I$(HPP) -std=c++03
-LL = $(CC) -o $(BIN)/demongeon
+CC = $(CL) -Wall -I$(HPP) -std=c++03
+LL = $(CC) -o $(BINOUT)
 
 # C++ Sum Type Generator Compiler
 CPPSTP := $(shell command -v cppstp 2>/dev/null)
 
 # Build Executable
-.PHONY: default
-default: $(OBJ)/main.o $(OBJ)/game.o $(OBJ)/coord.o $(OBJ)/maze.o $(OBJ)/room.o
+$(BINOUT): $(OBJ)/main.o $(OBJ)/game.o $(OBJ)/coord.o $(OBJ)/maze.o $(OBJ)/room.o
 	$(LL) $(OBJ)/main.o $(OBJ)/game.o $(OBJ)/coord.o $(OBJ)/maze.o $(OBJ)/room.o
 
 # Build Object Files
@@ -49,6 +51,11 @@ ifndef CPPSTP
 endif
 	$(CPPSTP) $(STP)/option.stp.toml > $(HPP)/option.hpp
 	$(CPPSTP) $(STP)/result.stp.toml > $(HPP)/result.hpp
+
+# Run The Project
+.PHONY: run
+run: $(BINOUT)
+	$(BINOUT)
 
 # Remove Object Files
 .PHONY: clean
