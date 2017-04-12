@@ -11,6 +11,14 @@ namespace demon {
             std::size_t room_x;
             std::size_t room_y;
             std::size_t hp;
+            Player();
+            Player(
+                std::size_t x,
+                std::size_t y,
+                std::size_t room_x,
+                std::size_t room_y,
+                std::size_t hp
+            );
     };
 }
 

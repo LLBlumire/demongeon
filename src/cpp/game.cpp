@@ -1,9 +1,13 @@
 #include <iostream>
+#include <sstream>
 
 #include "game.hpp"
 
 namespace demon {
-    GameState::GameState() {}
+    GameState::GameState() {
+        this->maze = Maze();
+        this->player = Player();
+    }
 
     result::Result<Ending::Enum, Error::Enum>* GameState::run() {
         std::cout << "Welcome, to the DEMONGEON!" << std::endl;
@@ -12,7 +16,16 @@ namespace demon {
         bool done = false;
         while (!done) {
             done = false;
-            done = done || !this->maze.oline(&std::cout, line);
+            {
+                int maze_line = line;
+                std::stringstream ss;
+                done = done || !this->maze.oline(&ss, maze_line);
+                std::string line = ss.str();
+                if (maze_line / 2 == this->player.room_y && maze_line % 2 == 0) {
+                    line[this->player.room_x * 2] = '@';
+                }
+                std::cout << line;
+            }
             if (!done) std::cout << std::endl;
             ++line;
         }
