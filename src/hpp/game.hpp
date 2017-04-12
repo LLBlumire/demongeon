@@ -5,6 +5,7 @@
 #include "maze.hpp"
 #include "error.hpp"
 #include "ending.hpp"
+#include "player.hpp"
 
 namespace demon {
     class GameState {
@@ -13,6 +14,7 @@ namespace demon {
             GameState();
         protected:
             Maze maze;
+            Player player;
     };
 }
 
