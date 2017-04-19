@@ -1,0 +1,18 @@
+name = "Tile"
+gentypes = [ ]
+
+[[variant]]
+name = "Empty"
+fields = [ ]
+
+[[variant]]
+name = "Item"
+fields = [ "Item" ]
+
+[[variant]]
+name = "Enemy"
+fields = [ "Enemy" ]
+
+[[variant]]
+name = "Player"
+fields = []

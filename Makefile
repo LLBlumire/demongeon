@@ -24,10 +24,10 @@ LL = $(CC) -o $(BINOUT)
 CPPSTP := $(shell command -v cppstp 2>/dev/null)
 
 # Build Executable
-$(BINOUT): $(OBJ)/main.o $(OBJ)/game.o $(OBJ)/coord.o $(OBJ)/maze.o $(OBJ)/room.o $(OBJ)/player.o
-	$(LL) $(OBJ)/main.o $(OBJ)/game.o $(OBJ)/coord.o $(OBJ)/maze.o $(OBJ)/room.o $(OBJ)/player.o
+$(BINOUT): $(OBJ)/main.o $(OBJ)/game.o $(OBJ)/coord.o $(OBJ)/maze.o $(OBJ)/room.o $(OBJ)/player.o $(OBJ)/tile.o
+	$(LL) $(OBJ)/main.o $(OBJ)/game.o $(OBJ)/coord.o $(OBJ)/maze.o $(OBJ)/room.o $(OBJ)/player.o $(OBJ)/tile.o
 
-# Build Object Files
+# Build Object Filesmsys
 $(OBJ)/main.o: $(CPP)/main.cpp
 	$(CC) -c $(CPP)/main.cpp -o $(OBJ)/main.o
 
@@ -45,6 +45,9 @@ $(OBJ)/room.o: $(CPP)/room.cpp
 
 $(OBJ)/player.o: $(CPP)/player.cpp
 	$(CC) -c $(CPP)/player.cpp -o $(OBJ)/player.o
+
+$(OBJ)/tile.o: $(CPP)/tile.cpp
+	$(CC) -c $(CPP)/tile.cpp -o $(OBJ)/tile.o
 
 # Build Sum Type Header Files
 .PHONY: stp

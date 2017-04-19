@@ -15,6 +15,7 @@ namespace demon {
         protected:
             Maze maze;
             Player player;
+            bool in_menu;
     };
 }
 

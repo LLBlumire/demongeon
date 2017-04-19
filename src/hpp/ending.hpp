@@ -5,7 +5,8 @@ namespace demon {
     namespace Ending {
         enum Enum {
             Win,
-            Died
+            Died,
+            Quit
         };
     }
 }

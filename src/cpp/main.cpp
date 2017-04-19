@@ -13,7 +13,7 @@ int main() {
     srand(time(NULL));
     int exit_code = 0;
 
-    GameState game = GameState();
+    GameState game;
 
     result::Result<Ending::Enum, Error::Enum>* game_result = game.run();
     {
@@ -27,6 +27,8 @@ int main() {
                 case Ending::Died:
                     std::cout << "Try Again Next Time!";
                     break;
+                case Ending::Quit:
+                    std::cout << "Play Again Soon!";
             }
         } else if (game_result->let_err(error)) {
             switch (*error) {

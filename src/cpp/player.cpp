@@ -2,12 +2,11 @@
 
 namespace demon {
     Player::Player() {
-        this->x = 0;
-        this->y = 0;
-        this->room_x = 0;
-        this->room_y = 0;
+        this->coord = Coord(0, 0);
+        this->room_coord = Coord(0, 0);
         this->hp = 0;
     }
+    
     Player::Player(
         std::size_t x,
         std::size_t y,
@@ -15,10 +14,18 @@ namespace demon {
         std::size_t room_y,
         std::size_t hp
     ) {
-        this->x = x;
-        this->y = y;
-        this->room_x = room_x;
-        this->room_y = room_y;
+        *this = Player(Coord(x, y), Coord(room_x, room_y), hp);
+    }
+
+    Player::Player(
+        Coord coord,
+        Coord room_coord,
+        std::size_t hp
+    ) {
+        this->coord = coord;
+        this->room_coord = room_coord;
         this->hp = hp;
+        this->sword = Item(ItemType::Sword, ItemLevel::Inferior);
+        this->shield = Item(ItemType::Shield, ItemLevel::Inferior);
     }
 }

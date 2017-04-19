@@ -1,0 +1,51 @@
+# Directory Structure
+BUILD = build
+OBJ = $(BUILD)\obj
+BIN = $(BUILD)\bin
+SOURCE = src
+CPP = $(SOURCE)\cpp
+HPP = $(SOURCE)\hpp
+STP = $(SOURCE)\stp
+
+# Output Name
+BINOUT = $(BIN)\demongeon.exe
+
+# Compiler and Linker
+CC=cl.exe /Z7 /I $(HPP)
+LL=link.exe /OUT:$(BINOUT)
+
+$(BINOUT): $(OBJ)\main.o $(OBJ)\game.o $(OBJ)\coord.o $(OBJ)\maze.o $(OBJ)\room.o $(OBJ)\player.o $(OBJ)\item.o $(OBJ)\enemy.o
+	$(LL) $(OBJ)\main.o $(OBJ)\game.o $(OBJ)\coord.o $(OBJ)\maze.o $(OBJ)\room.o $(OBJ)\player.o $(OBJ)\item.o $(OBJ)\enemy.o
+
+$(OBJ)\main.o: $(CPP)\main.cpp
+	$(CC) /c $(CPP)\main.cpp /Fo$(OBJ)\main.o
+
+$(OBJ)\game.o: $(CPP)\game.cpp
+	$(CC) /c $(CPP)\game.cpp /Fo$(OBJ)\game.o
+	
+$(OBJ)\coord.o: $(CPP)\coord.cpp
+	$(CC) /c $(CPP)\coord.cpp /Fo$(OBJ)\coord.o
+
+$(OBJ)\maze.o: $(CPP)\maze.cpp
+	$(CC) /c $(CPP)\maze.cpp /Fo$(OBJ)\maze.o
+
+$(OBJ)\room.o: $(CPP)\room.cpp
+	$(CC) /c $(CPP)\room.cpp /Fo$(OBJ)\room.o
+
+$(OBJ)\player.o: $(CPP)\player.cpp
+	$(CC) /c $(CPP)\player.cpp /Fo$(OBJ)\player.o
+
+$(OBJ)\item.o: $(CPP)\item.cpp
+	$(CC) /c $(CPP)\item.cpp /Fo$(OBJ)\item.o
+
+$(OBJ)\enemy.o: $(CPP)\enemy.cpp
+	$(CC) /c $(CPP)\enemy.cpp /Fo$(OBJ)\enemy.o
+
+# Run The Project
+.PHONY: run
+run: $(BINOUT)
+	$(BINOUT)
+
+.PHONY: clean
+clean:
+	del /q $(OBJ)\*

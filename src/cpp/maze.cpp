@@ -7,11 +7,6 @@ typedef std::set<demon::Coord, demon::coord_compare> CoordSet;
 namespace demon {
 
     Maze::Maze() {
-        for (std::size_t x = 0; x < 5; ++x) {
-            for (std::size_t y = 0; y < 5; ++y) {
-                this->rooms[x][y] = Room();
-            }
-        }
         for (std::size_t i = 0; i < 2; ++i) {
             for (std::size_t j = 0; j < 4; ++j) {
                 for (std::size_t k = 0; k < 5; ++k) {
@@ -22,7 +17,7 @@ namespace demon {
 
         // Create a set of rooms (tracked by pointer) to mark all that have been
         // included in the maze.
-        CoordSet joined = CoordSet();
+        CoordSet joined;
 
         // Insert the middle room.
         joined.insert(Coord(2, 2));
@@ -117,7 +112,7 @@ namespace demon {
     }
 
     bool Maze::oline(std::ostream* os, int line) {
-        if (line < 9) {
+        if (line < 9 && line >= 0) {
             if (line % 2 == 0) {
                 for (std::size_t x = 0; x < 5; ++x) {
                     *os << "+";
