@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "coord.hpp"
 
 namespace demon {
@@ -6,6 +8,14 @@ namespace demon {
     Coord::Coord(std::size_t x, std::size_t y) {
         this->x = x;
         this->y = y;
+    }
+
+    bool Coord::operator==(const Coord& other) {
+        return (this->x == other.x) && (this->y == other.y);
+    }
+    
+    bool Coord::operator!=(const Coord& other) {
+        return !(*this == other);
     }
 
     bool coord_compare::operator() (const Coord& lhs, const Coord& rhs) const {
@@ -17,4 +27,5 @@ namespace demon {
             return false;
         }
     }
+    
 }

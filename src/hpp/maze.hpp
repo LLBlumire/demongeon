@@ -21,6 +21,7 @@ namespace demon {
             option::Option<bool*>* edge(Coord c, Direction::Enum dir);
             bool* edge_unchecked(Coord c, Direction::Enum dir);
             bool oline(std::ostream* os, int line);
+            void generate();
     };
 
     void room_to_edge(std::size_t x, std::size_t y, Direction::Enum dir,
@@ -38,6 +39,7 @@ namespace demon {
     int dx_dir(Direction::Enum dir);
 
     int dy_dir(Direction::Enum dir);
+
 }
 
 #endif

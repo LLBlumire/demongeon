@@ -25,7 +25,7 @@ int main() {
                     std::cout << "You Win!";
                     break;
                 case Ending::Died:
-                    std::cout << "Try Again Next Time!";
+                    std::cout << "You Died! Try Again Next Time!";
                     break;
                 case Ending::Quit:
                     std::cout << "Play Again Soon!";

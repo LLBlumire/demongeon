@@ -7,6 +7,10 @@ typedef std::set<demon::Coord, demon::coord_compare> CoordSet;
 namespace demon {
 
     Maze::Maze() {
+        this->generate();
+    }
+
+    void Maze::generate() {
         for (std::size_t i = 0; i < 2; ++i) {
             for (std::size_t j = 0; j < 4; ++j) {
                 for (std::size_t k = 0; k < 5; ++k) {
@@ -14,7 +18,7 @@ namespace demon {
                 }
             }
         }
-
+        
         // Create a set of rooms (tracked by pointer) to mark all that have been
         // included in the maze.
         CoordSet joined;
@@ -76,7 +80,6 @@ namespace demon {
             }
 
         }
-
     }
 
     option::Option<Room*>* Maze::room(Coord c) {

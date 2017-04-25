@@ -1,3 +1,5 @@
+#include <sstream>
+
 #include "item.hpp"
 
 namespace demon {
@@ -52,6 +54,76 @@ namespace demon {
                     this->stat = dice(2, 20) + 18;
                 }
                 break;
+        }
+    }
+
+    std::string gemstone_string(Gemstone::Enum gemstone) {
+        switch (gemstone) {
+            case Gemstone::Demonic:
+                return std::string("Demonic");
+            case Gemstone::Swift:
+                return std::string("Swift");
+            case Gemstone::Hardy:
+                return std::string("Hardy");
+            case Gemstone::Lucky:
+                return std::string("Lucky");
+            case Gemstone::Enraged:
+                return std::string("Enraged");
+            case Gemstone::Burning:
+                return std::string("Burning");
+            case Gemstone::Frozen:
+                return std::string("Frozen");
+            default:
+                return std::string("");
+        }
+    }
+
+    std::string item_type_string(ItemType::Enum item_type) {
+        switch (item_type) {
+            case ItemType::Sword:
+                return std::string("Sword");
+            case ItemType::Shield:
+                return std::string("Shield");
+            default:
+                return std::string("");
+        }
+    }
+
+    std::string item_level_string(ItemLevel::Enum item_level) {
+        switch (item_level) {
+            case ItemLevel::Inferior:
+                return std::string("Inferior");
+            case ItemLevel::Lesser:
+                return std::string("Lesser");
+            case ItemLevel::Neutral:
+                return std::string("");
+            case ItemLevel::Greater:
+                return std::string("Greater");
+            case ItemLevel::Superior:
+                return std::string("Superior");
+            default:
+                return std::string("");
+        }
+    }
+
+    std::string Item::to_string() {
+        std::stringstream ss;
+        ss << item_level_string(this->level) << " ";
+        for (std::vector<Gemstone::Enum>::iterator i = this->gemstones.begin(); i != this->gemstones.end(); i++) {
+            ss << gemstone_string(*i) << " ";
+        }
+        ss << item_type_string(this->type) << " ";
+        ss << "(" << this->stat << ") ";
+        ss << "[" << this->gemstones.size() << "/" << this->socket_size << "]";
+        return ss.str();
+    }
+
+    bool Item::socket(Gemstone::Enum gemstone) {
+        if (this->gemstones.size() <= this->socket_size) {
+            this->gemstones.push_back(gemstone);
+            return true;
+        } else {
+            return false;
         }
     }
 }

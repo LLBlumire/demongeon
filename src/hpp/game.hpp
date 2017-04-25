@@ -1,6 +1,8 @@
 #ifndef INCL_GAME_HPP
 #define INCL_GAME_HPP
 
+#include <cstddef>
+
 #include "result.hpp"
 #include "maze.hpp"
 #include "error.hpp"
@@ -15,6 +17,7 @@ namespace demon {
         protected:
             Maze maze;
             Player player;
+            std::size_t floor;
             bool in_menu;
     };
 }

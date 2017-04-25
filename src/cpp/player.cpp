@@ -4,7 +4,9 @@ namespace demon {
     Player::Player() {
         this->coord = Coord(0, 0);
         this->room_coord = Coord(0, 0);
-        this->hp = 0;
+        this->hp = 100;
+        this->sword = Item(ItemType::Sword, ItemLevel::Inferior);
+        this->shield = Item(ItemType::Shield, ItemLevel::Inferior);
     }
     
     Player::Player(
