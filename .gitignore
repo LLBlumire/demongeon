@@ -1,2 +1,6 @@
 build
 .vscode
+cppstp/target/
+cppstp/**/*.rs.bk
+cppstp/Cargo.lock
+cppstp/*.swp
