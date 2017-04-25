@@ -1,0 +1,13 @@
+[package]
+name = "cppstp"
+version = "0.1.0"
+authors = ["Lucille Blumire <llblumire@gmail.com>"]
+
+[dependencies]
+serde_derive = "*"
+serde = "*"
+toml = "*"
+
+[dependencies.handlebars]
+version = "*"
+features = [ "serde_type" ]
