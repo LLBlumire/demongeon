@@ -26,7 +26,7 @@ namespace demon {
             /* Coord()
              * Default empty constructor.
              */
-            Coord::Coord() {}
+            Coord() {}
 
             /* Coord(size_t x, size_t y)
              * Constructs a new Coord with coordinates (x, y).
