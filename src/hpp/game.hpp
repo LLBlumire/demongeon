@@ -6,6 +6,7 @@
 #define INCL_GAME_HPP
 
 #include <cstddef>
+#include <algorithm>
 
 #include "result.hpp"
 #include "maze.hpp"
