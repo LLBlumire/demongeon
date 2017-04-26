@@ -50,7 +50,7 @@ $(OBJ)/item.o: $(CPP)/item.cpp
 	$(CC) -c $(CPP)/item.cpp -o $(OBJ)/item.o
 
 $(OBJ)/enemy.o: $(CPP)/enemy.cpp
-	$(CPP) -c $(CPP)/enemy.cpp -o $(OBJ)/enemy.o
+	$(CC) -c $(CPP)/enemy.cpp -o $(OBJ)/enemy.o
 
 # Build Sum Type Header Files
 .PHONY: stp
