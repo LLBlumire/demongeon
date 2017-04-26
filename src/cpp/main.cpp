@@ -32,8 +32,8 @@ int main() {
             }
         } else if (game_result->let_err(error)) {
             switch (*error) {
-                case Error::Unknown:
-                    std::cout << "An Unknown Error Occured";
+                case Error::UnexpectedLoopTermination:
+                    std::cout << "Game Terminated Unexpectedly";
                     break;
             }
 

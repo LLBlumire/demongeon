@@ -5,7 +5,6 @@
 typedef std::set<demon::Coord, demon::coord_compare> CoordSet;
 
 namespace demon {
-
     Maze::Maze() {
         this->generate();
     }

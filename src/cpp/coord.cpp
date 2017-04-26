@@ -3,7 +3,6 @@
 #include "coord.hpp"
 
 namespace demon {
-    Coord::Coord() {}
 
     Coord::Coord(std::size_t x, std::size_t y) {
         this->x = x;

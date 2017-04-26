@@ -585,6 +585,6 @@ namespace demon {
             }
         }
 
-        return new result::Err<Ending::Enum, Error::Enum>(Error::Unknown);
+        return new result::Err<Ending::Enum, Error::Enum>(Error::UnexpectedLoopTermination);
     }
 }
