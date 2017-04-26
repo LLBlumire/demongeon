@@ -7,6 +7,7 @@
 
 #include <cstddef>
 #include <algorithm>
+#include <limits>
 
 #include "result.hpp"
 #include "maze.hpp"
